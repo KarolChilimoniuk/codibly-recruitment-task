@@ -13,3 +13,7 @@ export type ItemActionFailure = {
   type: string;
   payloads: { statusCode: number; statusMessage: string };
 };
+
+export type ButtonProps = {
+  text: string;
+};
