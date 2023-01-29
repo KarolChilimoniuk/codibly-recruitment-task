@@ -1,22 +1,38 @@
 import { AnyAction } from "redux";
-import { ItemsState } from "../types/types";
+import {
+  FETCH_ITEMS_SUCCESS,
+  FETCH_ITEMS_FAILURE,
+} from "../actions/actionTypes";
+import { IAppState } from "../interfaces/interfaces";
 
-const initState: ItemsState = {
-  items: [],
-  status: 200,
+const initState: IAppState = {
+  itemsData: { page: 0, per_page: 0, total: 0, total_pages: 0, data: [] },
+  statusCode: 0,
+  statusMessage: "",
 };
 
-const itemsReducer = (state: ItemsState = initState, action: AnyAction) => {
+const itemsReducer = (
+  state: IAppState = initState,
+  action: AnyAction
+): IAppState => {
   switch (action.type) {
-    case action.FETCH_ITEMS_SUCCESS:
+    case FETCH_ITEMS_SUCCESS:
       return {
-        ...initState,
-        items: action.payloads,
+        itemsData: {
+          page: action.payloads.itemsData.page,
+          per_page: action.payloads.itemsData.per_page,
+          total: action.payloads.itemsData.total,
+          total_pages: action.payloads.itemsData.total_pages,
+          data: action.payloads.itemsData.data,
+        },
+        statusCode: action.payloads.statusCode,
+        statusMessage: action.payloads.statusMessage,
       };
-    case action.FETCH_ITEMS_FAILURE:
+    case FETCH_ITEMS_FAILURE:
       return {
-        ...initState,
-        status: action.payloads,
+        ...state,
+        statusCode: action.payloads.statusCode,
+        statusMessage: action.payloads.statusMessage,
       };
     default:
       return {

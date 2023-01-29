@@ -1,16 +1,15 @@
-import { IItem } from "../interfaces/interfaces";
-
-export type ItemsState = {
-  items: Array<IItem>;
-  status: number;
-};
+import { IItemsData } from "../interfaces/interfaces";
 
 export type ItemActionSuccess = {
   type: string;
-  payloads: Array<IItem>;
+  payloads: {
+    itemsData: IItemsData;
+    statusCode: number;
+    statusMessage: string;
+  };
 };
 
 export type ItemActionFailure = {
   type: string;
-  payloads: number;
+  payloads: { statusCode: number; statusMessage: string };
 };

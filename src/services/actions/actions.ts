@@ -1,27 +1,28 @@
-import { Dispatch } from "redux";
 import { FETCH_ITEMS_SUCCESS, FETCH_ITEMS_FAILURE } from "./actionTypes";
-import { IItem } from "../interfaces/interfaces";
+import { IItemsData } from "../interfaces/interfaces";
 import { ItemActionSuccess, ItemActionFailure } from "../types/types";
 
-export const getItems = (dispatch: Dispatch) => {
-  //   return (dispatch) {
-  //     try {
-  //     } catch(err) {
-  //         return err;
-  //     }
-  //   }
-};
-
-export const getItemsSuccess = (items: Array<IItem>): ItemActionSuccess => {
+export const getItemsSuccess = (
+  data: IItemsData,
+  statusCode: number,
+  statusMessage: string
+): ItemActionSuccess => {
   return {
     type: FETCH_ITEMS_SUCCESS,
-    payloads: items,
+    payloads: {
+      itemsData: data,
+      statusCode: statusCode,
+      statusMessage: statusMessage,
+    },
   };
 };
 
-export const getItemsFailure = (status: number): ItemActionFailure => {
+export const getItemsFailure = (
+  statusCode: number,
+  statusMessage: string
+): ItemActionFailure => {
   return {
     type: FETCH_ITEMS_FAILURE,
-    payloads: status,
+    payloads: { statusCode: statusCode, statusMessage: statusMessage },
   };
 };
