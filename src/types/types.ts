@@ -1,4 +1,4 @@
-import { IItemsData } from "../interfaces/interfaces";
+import { IItemsData, IItem } from "../interfaces/interfaces";
 
 export type ItemActionSuccess = {
   type: string;
@@ -16,4 +16,9 @@ export type ItemActionFailure = {
 
 export type ButtonProps = {
   text: string;
+};
+
+export type ItemsTableProps = {
+  items: Array<IItem>;
+  perPage: number;
 };

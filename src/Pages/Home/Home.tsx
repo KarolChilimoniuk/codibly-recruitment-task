@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "@mui/material";
 import Form from "../../components/Form/Form";
+import ItemsTable from "../../components/ItemsTable/ItemsTable";
 import { fetchItems } from "../../services/itemsApi/fetchItems";
-import { IAppState } from "../../interfaces/interfaces";
+import { RootReducer } from "../../interfaces/interfaces";
 
 const HomePage = (): JSX.Element => {
   const dispatch = useDispatch();
-  const appData = useSelector((state: IAppState) => state);
+  const appData = useSelector((state: RootReducer) => state);
 
   useEffect(() => {
     fetchItems("https://reqres.in/api/products", dispatch);
@@ -26,8 +27,14 @@ const HomePage = (): JSX.Element => {
       }}
     >
       <button onClick={() => console.log(appData)} />
+      <p>{appData.fetchedData.statusCode}</p>
+      <p>{appData.fetchedData.statusMessage}</p>
       <h2>Homepage</h2>
       <Form />
+      <ItemsTable
+        items={appData.fetchedData.itemsData.data}
+        perPage={appData.fetchedData.itemsData.per_page}
+      />
     </Container>
   );
 };

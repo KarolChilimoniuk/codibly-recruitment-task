@@ -19,3 +19,13 @@ export interface IAppState {
   statusCode: number;
   statusMessage: string;
 }
+
+export interface ITableData {
+  id: number;
+  name: string;
+  year: number;
+}
+
+export interface RootReducer {
+  fetchedData: IAppState;
+}
