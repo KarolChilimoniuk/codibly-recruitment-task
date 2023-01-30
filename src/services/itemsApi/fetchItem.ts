@@ -1,21 +1,26 @@
 import { Dispatch } from "redux";
 import { AxiosError, AxiosResponse } from "axios";
 import instance from "./axiosInstance";
-import { getItemsSuccess, getItemsFailure } from "../../actions/actions";
+import { getItemSuccess, getItemFailure } from "../../actions/actions";
 
-export const fetchItems = async (dispatch: Dispatch): Promise<void> => {
+export const fetchItem = async (
+  dispatch: Dispatch,
+  itemId: string
+): Promise<void> => {
   await instance
-    .get("/products")
+    .get(`/products/${itemId}`)
     .then((res: AxiosResponse) => {
-      dispatch(getItemsSuccess(res.data, res.status, "OK"));
+      dispatch(getItemSuccess(res.data.data, res.status, "OK"));
+      console.log(res);
     })
     .catch((err: AxiosError) => {
+      console.log(err);
       if (err.response) {
         err.response.status > 500 &&
-          dispatch(getItemsFailure(err.response.status, "Server error"));
+          dispatch(getItemFailure(err.response.status, "Server error"));
         err.response.status > 400 &&
           dispatch(
-            getItemsFailure(
+            getItemFailure(
               err.response.status,
               "Item not found or your request isn't allowed"
             )

@@ -16,16 +16,12 @@ export interface IItemsData {
 
 export interface IAppState {
   itemsData: IItemsData;
+  filteredItem: IItem | null;
   statusCode: number;
   statusMessage: string;
+  filterValue: string;
 }
 
-export interface ITableData {
-  id: number;
-  name: string;
-  year: number;
-}
-
-export interface RootReducer {
+export interface IRootReducer {
   fetchedData: IAppState;
 }

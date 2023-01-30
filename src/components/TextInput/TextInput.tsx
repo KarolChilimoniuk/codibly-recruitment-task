@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { regexValidator } from "../../utils/textInput";
+import { InputProps } from "../../types/types";
 
-const TextInput = (): JSX.Element => {
-  const [numbers, setNumbers] = useState<any>("");
+const TextInput = ({ inputFilterValueHandler }: InputProps): JSX.Element => {
+  const [numbers, setNumbers] = useState<string>("");
 
   return (
     <TextField
@@ -18,7 +19,7 @@ const TextInput = (): JSX.Element => {
         },
         label: { color: "rgb(255,255,255)" },
       }}
-      onChange={(e) => regexValidator(e, setNumbers)}
+      onChange={(e) => regexValidator(e, setNumbers, inputFilterValueHandler)}
       value={numbers}
     />
   );

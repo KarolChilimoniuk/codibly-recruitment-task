@@ -1,6 +1,6 @@
 import { IItemsData, IItem } from "../interfaces/interfaces";
 
-export type ItemActionSuccess = {
+export type ItemActionFetchItemsSuccess = {
   type: string;
   payloads: {
     itemsData: IItemsData;
@@ -9,16 +9,35 @@ export type ItemActionSuccess = {
   };
 };
 
-export type ItemActionFailure = {
+export type ItemActionFetchItemsFailure = {
   type: string;
   payloads: { statusCode: number; statusMessage: string };
 };
 
+export type ItemActionSetFilterValue = {
+  type: string;
+  payloads: string;
+};
+
+export type ItemActionFetchOneItemSuccess = {
+  type: string;
+  payloads: { filteredItem: IItem; statusCode: number; statusMessage: string };
+};
+
+export type ItemActionFetchOneItemFailure = {
+  type: string;
+  payloads: { statusCode: number; statusMessage: string };
+};
+
+export type InputProps = {
+  inputFilterValueHandler: any;
+};
+
 export type ButtonProps = {
   text: string;
+  type: string;
 };
 
 export type ItemsTableProps = {
-  items: Array<IItem>;
   perPage: number;
 };

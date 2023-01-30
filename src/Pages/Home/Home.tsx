@@ -4,14 +4,15 @@ import { Container } from "@mui/material";
 import Form from "../../components/Form/Form";
 import ItemsTable from "../../components/ItemsTable/ItemsTable";
 import { fetchItems } from "../../services/itemsApi/fetchItems";
-import { RootReducer } from "../../interfaces/interfaces";
+import { fetchItem } from "../../services/itemsApi/fetchItem";
+import { IRootReducer } from "../../interfaces/interfaces";
 
 const HomePage = (): JSX.Element => {
   const dispatch = useDispatch();
-  const appData = useSelector((state: RootReducer) => state);
+  const appData = useSelector((state: IRootReducer) => state);
 
   useEffect(() => {
-    fetchItems("https://reqres.in/api/products", dispatch);
+    fetchItems(dispatch);
   }, []);
 
   return (
@@ -23,18 +24,25 @@ const HomePage = (): JSX.Element => {
         flexDirection: "column",
         minHeight: "100vh",
         minWidth: "100vw",
+        paddingBottom: "30px",
+        paddingLeft: "0px",
         paddingTop: "20px",
+        paddingRight: "0px",
       }}
     >
-      <button onClick={() => console.log(appData)} />
-      <p>{appData.fetchedData.statusCode}</p>
-      <p>{appData.fetchedData.statusMessage}</p>
-      <h2>Homepage</h2>
+      <button onClick={() => console.log(appData)}>fetchItems</button>
+      <button
+        onClick={() => fetchItem(dispatch, appData.fetchedData.filterValue)}
+      >
+        fetchITem
+      </button>
+      {appData.fetchedData.statusCode > 400 && (
+        <p>
+          {appData.fetchedData.statusCode}: {appData.fetchedData.statusMessage}
+        </p>
+      )}
       <Form />
-      <ItemsTable
-        items={appData.fetchedData.itemsData.data}
-        perPage={appData.fetchedData.itemsData.per_page}
-      />
+      <ItemsTable perPage={appData.fetchedData.itemsData.per_page} />
     </Container>
   );
 };
