@@ -41,3 +41,8 @@ export type ButtonProps = {
 export type ItemsTableProps = {
   perPage: number;
 };
+
+export type ItemModalProps = {
+  item: IItem;
+  text: string;
+};

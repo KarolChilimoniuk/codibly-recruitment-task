@@ -1,0 +1,18 @@
+.Modal_span {
+  color: rgb(0, 255, 0);
+}
+
+.Modal_box {
+  background-color: rgba(10, 25, 41, 1);
+  color: rgb(255, 255, 255);
+  height: 320px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  border: 0;
+  box-shadow: 24px;
+  border-radius: 10px;
+  padding: 20px;
+}

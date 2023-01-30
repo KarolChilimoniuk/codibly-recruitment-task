@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Dispatch } from "redux";
-import { fetchItem } from "../../services/itemsApi/fetchItem";
-import { fetchItems } from "../../services/itemsApi/fetchItems";
-import { ItemsTableProps } from "../../types/types";
-import { IRootReducer } from "../../interfaces/interfaces";
 import {
   Card,
   Table,
@@ -14,6 +10,11 @@ import {
   TableCell,
   TablePagination,
 } from "@mui/material";
+import ItemModal from "../Modal/ItemModal";
+import { fetchItem } from "../../services/itemsApi/fetchItem";
+import { fetchItems } from "../../services/itemsApi/fetchItems";
+import { ItemsTableProps } from "../../types/types";
+import { IRootReducer } from "../../interfaces/interfaces";
 
 const ItemsTable = ({ perPage }: ItemsTableProps): JSX.Element => {
   const appData = useSelector((state: IRootReducer) => state);
@@ -40,6 +41,7 @@ const ItemsTable = ({ perPage }: ItemsTableProps): JSX.Element => {
           {appData.fetchedData.filterValue === "" &&
             appData.fetchedData.itemsData.data.map((item) => (
               <TableRow
+                key={item.id}
                 sx={{
                   backgroundColor: `${item.color}`,
                   cursor: "pointer",
@@ -47,10 +49,10 @@ const ItemsTable = ({ perPage }: ItemsTableProps): JSX.Element => {
                   "&:hover td": { color: "rgb(255,255,255)" },
                 }}
               >
-                <TableCell>{item.id}</TableCell>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.color}</TableCell>
-                <TableCell>{item.year}</TableCell>
+                <ItemModal item={item} text={`${item.id}`} />
+                <ItemModal item={item} text={`${item.name}`} />
+                <ItemModal item={item} text={`${item.color}`} />
+                <ItemModal item={item} text={`${item.year}`} />
               </TableRow>
             ))}
           {appData.fetchedData.filteredItem !== null && (
@@ -61,10 +63,22 @@ const ItemsTable = ({ perPage }: ItemsTableProps): JSX.Element => {
                 "&:hover": { backgroundColor: "rgba(10, 25, 41, 1)" },
               }}
             >
-              <TableCell>{appData.fetchedData.filteredItem.id}</TableCell>
-              <TableCell>{appData.fetchedData.filteredItem.name}</TableCell>
-              <TableCell>{appData.fetchedData.filteredItem.color}</TableCell>
-              <TableCell>{appData.fetchedData.filteredItem.year}</TableCell>
+              <ItemModal
+                item={appData.fetchedData.filteredItem}
+                text={`${appData.fetchedData.filteredItem.id}`}
+              />
+              <ItemModal
+                item={appData.fetchedData.filteredItem}
+                text={`${appData.fetchedData.filteredItem.name}`}
+              />
+              <ItemModal
+                item={appData.fetchedData.filteredItem}
+                text={`${appData.fetchedData.filteredItem.color}`}
+              />
+              <ItemModal
+                item={appData.fetchedData.filteredItem}
+                text={`${appData.fetchedData.filteredItem.year}`}
+              />
             </TableRow>
           )}
         </TableBody>

@@ -11,10 +11,8 @@ export const fetchItem = async (
     .get(`/products/${itemId}`)
     .then((res: AxiosResponse) => {
       dispatch(getItemSuccess(res.data.data, res.status, "OK"));
-      console.log(res);
     })
     .catch((err: AxiosError) => {
-      console.log(err);
       if (err.response) {
         err.response.status > 500 &&
           dispatch(getItemFailure(err.response.status, "Server error"));
