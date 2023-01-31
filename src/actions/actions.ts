@@ -3,7 +3,7 @@ import {
   FETCH_ITEMS_FAILURE,
   FETCH_ITEM_SUCCESS,
   FETCH_ITEM_FAILURE,
-  SET_VALUE_TO_FILTER_ITEMS,
+  CHANGE_PAGE_NUMBER,
 } from "./actionTypes";
 import { IItem, IItemsData } from "../interfaces/interfaces";
 import {
@@ -12,6 +12,7 @@ import {
   ItemActionFetchOneItemSuccess,
   ItemActionFetchOneItemFailure,
   ItemActionSetFilterValue,
+  ChangePageNumber,
 } from "../types/types";
 
 export const getItemsSuccess = (
@@ -64,11 +65,9 @@ export const getItemFailure = (
   };
 };
 
-export const setValueToFilterItems = (
-  value: string
-): ItemActionSetFilterValue => {
+export const changePageNumber = (page: number): ChangePageNumber => {
   return {
-    type: SET_VALUE_TO_FILTER_ITEMS,
-    payloads: value,
+    type: CHANGE_PAGE_NUMBER,
+    payloads: page,
   };
 };

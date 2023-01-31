@@ -16,10 +16,11 @@ export interface IItemsData {
 
 export interface IAppState {
   itemsData: IItemsData;
-  filteredItem: IItem | null;
+  itemsToDisplay: [IItem] | null;
   statusCode: number;
   statusMessage: string;
   filterValue: string;
+  pageNumber: number;
 }
 
 export interface IRootReducer {

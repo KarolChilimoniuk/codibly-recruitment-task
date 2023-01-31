@@ -29,6 +29,11 @@ export type ItemActionFetchOneItemFailure = {
   payloads: { statusCode: number; statusMessage: string };
 };
 
+export type ChangePageNumber = {
+  type: string;
+  payloads: number;
+};
+
 export type InputProps = {
   inputFilterValueHandler: any;
 };
@@ -38,11 +43,11 @@ export type ButtonProps = {
   type: string;
 };
 
-export type ItemsTableProps = {
-  perPage: number;
-};
-
 export type ItemModalProps = {
   item: IItem;
   text: string;
+};
+
+export type PaginationProps = {
+  amountOfItems: number;
 };

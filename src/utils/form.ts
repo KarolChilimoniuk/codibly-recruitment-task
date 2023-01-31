@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
-import { setValueToFilterItems } from "../actions/actions";
+import { fetchItem } from "../services/itemsApi/fetchItem";
+import { fetchItems } from "../services/itemsApi/fetchItems";
 
 export const submitHandler = (
   e: React.FormEvent<HTMLFormElement>,
@@ -7,5 +8,6 @@ export const submitHandler = (
   inputValue: string
 ): void => {
   e.preventDefault();
-  dispatch(setValueToFilterItems(inputValue));
+  inputValue !== "" && fetchItem(dispatch, inputValue);
+  inputValue === "" && fetchItems(dispatch, 1);
 };

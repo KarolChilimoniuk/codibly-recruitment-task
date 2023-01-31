@@ -4,13 +4,14 @@ import {
   FETCH_ITEMS_FAILURE,
   FETCH_ITEM_SUCCESS,
   FETCH_ITEM_FAILURE,
-  SET_VALUE_TO_FILTER_ITEMS,
+  CHANGE_PAGE_NUMBER,
 } from "../actions/actionTypes";
 import { IAppState } from "../interfaces/interfaces";
 
 const initState: IAppState = {
   itemsData: { page: 0, per_page: 0, total: 0, total_pages: 0, data: [] },
-  filteredItem: null,
+  itemsToDisplay: null,
+  pageNumber: 1,
   statusCode: 0,
   statusMessage: "",
   filterValue: "",
@@ -23,16 +24,17 @@ const itemsReducer = (
   switch (action.type) {
     case FETCH_ITEMS_SUCCESS:
       return {
+        ...state,
         itemsData: {
           page: action.payloads.itemsData.page,
-          per_page: action.payloads.itemsData.per_page,
+          per_page: 5,
           total: action.payloads.itemsData.total,
           total_pages: action.payloads.itemsData.total_pages,
           data: action.payloads.itemsData.data,
         },
+        itemsToDisplay: action.payloads.itemsData.data,
         statusCode: action.payloads.statusCode,
         statusMessage: action.payloads.statusMessage,
-        filteredItem: null,
         filterValue: "",
       };
     case FETCH_ITEMS_FAILURE:
@@ -46,7 +48,8 @@ const itemsReducer = (
         ...state,
         statusCode: action.payloads.statusCode,
         statusMessage: action.payloads.statusMessage,
-        filteredItem: action.payloads.filteredItem,
+        itemsToDisplay: [action.payloads.filteredItem],
+        pageNumber: 1,
       };
     case FETCH_ITEM_FAILURE:
       return {
@@ -54,10 +57,10 @@ const itemsReducer = (
         statusCode: action.payloads.statusCode,
         statusMessage: action.payloads.statusMessage,
       };
-    case SET_VALUE_TO_FILTER_ITEMS:
+    case CHANGE_PAGE_NUMBER:
       return {
         ...state,
-        filterValue: action.payloads,
+        pageNumber: action.payloads,
       };
     default:
       return {

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/Home/Home";
-import PageNotFound from "./Pages/Home/PageNotFound";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import "./App.css";
 
 const App = (): JSX.Element => {

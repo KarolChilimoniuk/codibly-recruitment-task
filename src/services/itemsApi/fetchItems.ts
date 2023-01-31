@@ -3,9 +3,12 @@ import { AxiosError, AxiosResponse } from "axios";
 import instance from "./axiosInstance";
 import { getItemsSuccess, getItemsFailure } from "../../actions/actions";
 
-export const fetchItems = async (dispatch: Dispatch): Promise<void> => {
+export const fetchItems = async (
+  dispatch: Dispatch,
+  page: number
+): Promise<void> => {
   await instance
-    .get("/products")
+    .get(`/products?page=${page}`)
     .then((res: AxiosResponse) => {
       dispatch(getItemsSuccess(res.data, res.status, "OK"));
     })
