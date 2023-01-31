@@ -4,20 +4,20 @@ import { ItemModalProps } from "../../types/types";
 import styles from "./ItemModal.module.scss";
 
 const ItemModal = ({ item, text }: ItemModalProps): JSX.Element => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [openStatus, handleOpenStatus] = useState<boolean>(false);
 
   const handleOpen = () => {
-    setOpen(true);
+    handleOpenStatus(true);
   };
   const handleClose = () => {
-    setOpen(false);
+    handleOpenStatus(false);
   };
 
   return (
     <>
       <TableCell onClick={handleOpen}>{text}</TableCell>
       <Modal
-        open={open}
+        open={openStatus}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"

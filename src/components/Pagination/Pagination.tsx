@@ -25,7 +25,7 @@ const Pagination = ({ amountOfItems }: PaginationProps): JSX.Element => {
   return (
     <>
       <TablePagination
-        sx={{ backgroundColor: "rgba(10, 25, 41, 0.7)", border: "0" }}
+        sx={{ backgroundColor: "rgba(10, 25, 41, 0.7)" }}
         component="div"
         onPageChange={handlePageChange}
         page={controller.page}

@@ -31,7 +31,7 @@ const HomePage = (): JSX.Element => {
         paddingRight: "0px",
       }}
     >
-      {" "}
+      <h2>Codibly recruitment task</h2>{" "}
       {appData.fetchedData.statusCode > 400 && (
         <>
           <p>{appData.fetchedData.statusCode}</p>

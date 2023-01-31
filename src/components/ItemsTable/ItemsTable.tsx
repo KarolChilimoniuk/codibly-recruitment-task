@@ -55,7 +55,14 @@ const ItemsTable = (): JSX.Element => {
               ))}
         </TableBody>
       </Table>
-      <Pagination amountOfItems={appData.fetchedData.itemsData.total - 2} />
+      <Pagination
+        amountOfItems={
+          appData.fetchedData.itemsToDisplay !== null &&
+          appData.fetchedData.itemsToDisplay.length > 1
+            ? appData.fetchedData.itemsData.total - 2
+            : 1
+        }
+      />
     </Card>
   );
 };
