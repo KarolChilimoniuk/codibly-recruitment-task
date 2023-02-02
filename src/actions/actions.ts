@@ -11,7 +11,6 @@ import {
   ItemActionFetchItemsFailure,
   ItemActionFetchOneItemSuccess,
   ItemActionFetchOneItemFailure,
-  ItemActionSetFilterValue,
   ChangePageNumber,
 } from "../types/types";
 

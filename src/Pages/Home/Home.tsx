@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
 import Form from "../../components/Form/Form";
 import ItemsTable from "../../components/ItemsTable/ItemsTable";
@@ -10,7 +9,6 @@ import { IRootReducer } from "../../interfaces/interfaces";
 const HomePage = (): JSX.Element => {
   const dispatch = useDispatch();
   const appData = useSelector((state: IRootReducer) => state);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchItems(dispatch, 1);

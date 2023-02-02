@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { submitHandler } from "../../utils/form";
 import TextInput from "../TextInput/TextInput";
 import FormButton from "../FormButton/FormButton";
